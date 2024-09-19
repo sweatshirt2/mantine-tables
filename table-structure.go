@@ -184,3 +184,27 @@ func validateIntegerInput(num int, min int, max int) (uint8, error) {
 	}
 	return uint8(num), nil
 }
+
+func handleInput(prompt string, options []string, min int, max int, twoOpts bool) uint8 {
+	var value uint8
+	for true {
+		inputPlaceholder, err := acceptIntegerInput(prompt, options)
+		if err != nil {
+			println("Please enter an integer input...")
+			continue
+		}
+		uint8placeholder, err := validateIntegerInput(inputPlaceholder, min, max)
+		if err != nil {
+			if twoOpts {
+				fmt.Printf("Please enter %d or %d. \n", min, max)
+			} else {
+				fmt.Printf("Please enter a number between %d and %d. Both inclusive \n", min, max)
+			}
+			continue
+		}
+		value = uint8placeholder
+		break
+	}
+
+	return value
+}

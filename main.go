@@ -35,89 +35,19 @@ func main() {
 	print("Let's get started...\n")
 
 	// ! horizontal spacing
-	for true {
-		inputPlaceholder, err := acceptIntegerInput("Choose the horizontal spacing", size_spacing_shadow_Options)
-		if err != nil {
-			println("Please enter an integer input...")
-			continue
-		}
-		min, max := 1, 4
-		uint8placeholder, err := validateIntegerInput(inputPlaceholder, min, max)
-		if err != nil {
-			fmt.Printf("Please enter a number between %d and %d. Both inclusive \n", min, max)
-			continue
-		}
-		hSpacing = uint8placeholder
-		break
-	}
+	hSpacing = handleInput("Choose the horizontal spacing", size_spacing_shadow_Options, 1, 4, false)
 
 	// ! vertical spacing
-	for true {
-		inputPlaceholder, err := acceptIntegerInput("Choose the vertical spacing", size_spacing_shadow_Options)
-		if err != nil {
-			println("Please enter an integer input...")
-			continue
-		}
-		min, max := 1, 4
-		uint8placeholder, err := validateIntegerInput(inputPlaceholder, min, max)
-		if err != nil {
-			fmt.Printf("Please enter a number between %d and %d. Both inclusive \n", min, max)
-			continue
-		}
-		vSpacing = uint8placeholder
-		break
-	}
+	vSpacing = handleInput("Choose the vertical spacing", size_spacing_shadow_Options, 1, 4, false)
 
 	// ! background color
-	for true {
-		inputPlaceholder, err := acceptIntegerInput("Choose a background color", bgColorOptions)
-		if err != nil {
-			println("Please enter an integer input...")
-			continue
-		}
-		min, max := 1, 2
-		uint8placeholder, err := validateIntegerInput(inputPlaceholder, min, max)
-		if err != nil {
-			fmt.Printf("Please enter %d or %d. \n", min, max)
-			continue
-		}
-		bgColor = uint8placeholder
-		break
-	}
+	bgColor = handleInput("Choose the background color", bgColorOptions, 1, 2, true)
 
 	// ! background color intensity
-	for bgColor == 2 {
-		inputPlaceholder, err := acceptIntegerInput("Choose a background color intensity. Enter a number between 1 and 9. Both inclusive", bgColorIntensityOptions)
-		if err != nil {
-			println("Please enter an integer input...")
-			continue
-		}
-		min, max := 1, 9
-		uint8placeholder, err := validateIntegerInput(inputPlaceholder, min, max)
-		if err != nil {
-			fmt.Printf("Please enter a number between %d and %d. Both inclusive \n", min, max)
-			continue
-		}
-		bgColorIntensity = uint8placeholder
-		break
-	}
+	bgColorIntensity = handleInput("Choose a background color intensity", bgColorIntensityOptions, 1, 9, false)
 
 	// ! shadow
-	for true {
-		inputPlaceholder, err := acceptIntegerInput("Choose a shadow", size_spacing_shadow_Options)
-		if err != nil {
-			println("Please enter an integer input...")
-			continue
-		}
-		min, max := 1, 4
-		uint8placeholder, err := validateIntegerInput(inputPlaceholder, min, max)
-		if err != nil {
-			fmt.Printf("Please enter a number between %d and %d. Both inclusive \n", min, max)
-			continue
-		}
-		shadow = uint8placeholder
-		break
-	}
+	shadow = handleInput("Choose the shadow", size_spacing_shadow_Options, 1, 4, false)
 
 	// ! striped
 	for true {
@@ -130,22 +60,7 @@ func main() {
 
 			// ! stripe
 			striped = true
-			for true {
-				inputPlaceholder, err := acceptIntegerInput("Choose a shadow", stripeOptions)
-				if err != nil {
-					println("Please enter an integer input...")
-					continue
-				}
-				min, max := 1, 2
-				uint8placeholder, err := validateIntegerInput(inputPlaceholder, min, max)
-				if err != nil {
-					fmt.Printf("Please enter %d or %d. \n", min, max)
-					continue
-				}
-				stripe = uint8placeholder
-				break
-			}
-			break
+			stripe = handleInput("Choose the stripe order", stripeOptions, 1, 2, true)
 		}
 		break
 	}
